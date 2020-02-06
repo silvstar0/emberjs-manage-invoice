@@ -1,0 +1,24 @@
+<div class="df-jcsb-aic">
+  <div>
+    <h4>Date:</h4>
+    <p>{{moment-format invoice.date "DD-MM-YYYY"}}</p>
+
+    <h4>Amount:</h4>
+    <p>{{input value=invoice.amount type="number"}}</p>
+  </div>
+
+  <div class="margin-left-20">
+    {{#power-calendar
+      class="demo-calendar-small"
+      center=center
+      selected=invoice.date
+      onCenterChange=(action (mut center) value="moment")
+      onSelect=(action (mut invoice.date) value="moment")
+    as |calendar|}}
+      <div>
+        {{calendar.nav}}
+        {{calendar.days}}
+      </div>
+    {{/power-calendar}}
+  </div>
+</div>

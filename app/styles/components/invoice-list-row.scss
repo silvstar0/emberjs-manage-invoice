@@ -1,0 +1,19 @@
+.invoice-list-row {
+  height: 50px;
+  padding: 10px;
+}
+
+.invoice-list-row:nth-child(odd) {
+  background-color: #F5F7FA;
+}
+
+.invoice-list-row__btn {
+  font-size: 28px;
+  color: #000000;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+  cursor: pointer;
+}

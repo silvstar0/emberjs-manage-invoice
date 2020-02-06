@@ -1,0 +1,33 @@
+<div class="invoices-new-page dfc">
+  {{#if model.isNew}}
+    <h2>Create new Invoice</h2>
+
+    {{invoice-edit-form invoice=model}}
+
+    <a href="" {{action (perform saveInvoiceTask) model}}
+      class="btn-primary {{if saveInvoiceTask.isRunning "btn-loading-spinner"}}">
+      {{if saveInvoiceTask.isIdle "Save"}}
+    </a>
+    {{#link-to "invoices" class="btn-secondary"}}
+      {{fa-icon "chevron-left" class="margin-right-20"}}Cancel
+    {{/link-to}}
+  {{else}}
+    <h1>Success! {{fa-icon "check"}}</h1>
+
+    <div class="dfc">
+      <p><strong>Id: </strong>{{model.id}}</p>
+      <p><strong>Date: </strong>{{moment-format model.date "DD-MM-YYYY"}}</p>
+      <p><strong>Amount: </strong>{{if model.amount model.amount "-"}}</p>
+    </div>
+
+    <div class="df">
+      {{#link-to "invoices" class="btn-secondary fg-1 margin-right-20"}}
+        {{fa-icon "chevron-left" class="margin-right-20"}}Back to List
+      {{/link-to}}
+
+      <a href="" {{action "turnToCreateNewInvoice"}} class="btn-primary fg-1 margin-left-20">
+        Create New {{fa-icon "plus" class="margin-left-20"}}
+      </a>
+    </div>
+  {{/if}}
+</div>

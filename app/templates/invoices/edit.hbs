@@ -1,0 +1,33 @@
+<div class="invoices-edit-page dfc">
+  {{#if isUpdated}}
+    <h1>Success! {{fa-icon "check"}}</h1>
+
+    <div class="dfc">
+      <p><strong>Id: </strong>{{invoice.id}}</p>
+      <p><strong>Date: </strong>{{moment-format invoice.date "DD-MM-YYYY"}}</p>
+      <p><strong>Amount: </strong>{{if invoice.amount invoice.amount "-"}}</p>
+    </div>
+
+    <div class="df">
+      {{#link-to "invoices" class="btn-secondary fg-1 margin-right-20"}}
+        {{fa-icon "chevron-left" class="margin-right-20"}}Back to List
+      {{/link-to}}
+
+      <a href="" {{action "turnToEditAgain"}} class="btn-primary fg-1 margin-left-20">
+        Edit Invoice{{fa-icon "edit" class="margin-left-20"}}
+      </a>
+    </div>
+  {{else}}
+    <h2>Edit Invoice / Id: {{invoice.id}}</h2>
+
+    {{invoice-edit-form invoice=invoice}}
+
+    <a {{action (perform updateInvoiceTask) invoice}} href
+       class="btn-primary relative {{if updateInvoiceTask.isRunning "btn-loading-spinner"}}">
+      {{if updateInvoiceTask.isIdle "Save Changes"}}
+    </a>
+    {{#link-to "invoices" class="btn-secondary"}}
+      {{fa-icon "chevron-left" class="margin-right-20"}}Cancel
+    {{/link-to}}
+  {{/if}}
+</div>

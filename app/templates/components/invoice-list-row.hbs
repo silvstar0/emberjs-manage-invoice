@@ -1,0 +1,11 @@
+<div>{{moment-format invoice.date "YYYY-MM-DD"}}</div>
+<div>{{if invoice.amount invoice.amount "-"}}</div>
+<div>
+  {{#link-to "invoices.edit" invoice tagName="button" class="invoice-list-row__btn"}}
+    {{fa-icon "pencil"}}
+  {{/link-to}}
+
+  <button {{action destroyInvoice invoice}} class="invoice-list-row__btn">
+    {{fa-icon "close"}}
+  </button>
+</div>

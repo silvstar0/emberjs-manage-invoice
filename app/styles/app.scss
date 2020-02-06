@@ -1,0 +1,212 @@
+/* addons styles */
+@import "ember-power-calendar";
+
+/* pages styles */
+@import "./pages/invoices-index-page";
+@import "./pages/invoices-new-page";
+@import "./pages/invoices-edit-page";
+
+/* components styles */
+@import "./components/invoice-list-row";
+
+
+/* base styles */
+body {
+  font-size: 18px;
+}
+
+body {
+  background-color: #ffffff;
+  font-family: "Courier New", "Courier", "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  box-sizing: border-box;
+}
+
+.df {
+  display: flex;
+  flex-direction: row;
+}
+
+.dfc {
+  display: flex;
+  flex-direction: column;
+}
+
+.fg-1 {
+  flex-grow: 1;
+}
+
+.df-jcsb-aic {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  height: 56px;
+  background-color: #71B03E;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 4px;
+  box-shadow: #c4c4c4 0 2px 6px 2px;
+  cursor: pointer;
+  transition: .2s;
+  text-decoration: none;
+  padding: 0 20px;
+  margin: 20px 0;
+
+  &:active  {
+    background-color: darken(#71B03E, 10%);
+  }
+}
+
+.btn-secondary {
+  @extend .btn-primary;
+  background-color: #cccccc;
+
+  &:active  {
+    background-color: darken(#cccccc, 10%);
+  }
+}
+
+.loading-spinner {
+  position: relative;
+
+  &:before {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    opacity: .5;
+    top: calc(50% - 20px - 4px);
+    left: calc(50% - 20px - 4px);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    border: 4px solid #71B03E;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+  }
+
+  &:after {
+    content: "";
+    z-index: 998;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btn-loading-spinner {
+  @extend .loading-spinner;
+
+  &:before {
+    opacity: 1;
+    top: calc(50% - 16px - 4px);
+    left: calc(50% - 16px - 4px);
+    width: 32px;
+    height: 32px;
+    border: 4px solid #ffffff;
+    border-bottom-color: transparent;
+  }
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.margin-right-20 {
+  margin-right: 20px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.calendar-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.ember-power-calendar {
+  @include ember-power-calendar($cell-size: 50px);
+
+  border: 2px solid #71B03E;
+  border-radius: 8px;
+
+  .ember-power-calendar-nav {
+    background-color: #71B03E;
+  }
+
+  .ember-power-calendar-nav-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFFFFF;
+  }
+
+  .ember-power-calendar-nav-control {
+    font-size: 32px;
+    color: #FFFFFF;
+    padding: 0 20px;
+    cursor: pointer;
+
+    &:focus {
+      color: #FFFFFF;
+    }
+  }
+
+  .ember-power-calendar-weekdays {
+    background-color: #71B03E;
+  }
+
+  .ember-power-calendar-weekday {
+    font-size: 18px;
+    color: #FFFFFF;
+  }
+
+  .ember-power-calendar-row {
+    justify-content: space-around;
+  }
+
+  .ember-power-calendar-day--current-month,
+  .ember-power-calendar-day--interactive {
+    font-size: 22px;
+  }
+
+  .ember-power-calendar-day--focused{
+    box-shadow: none;
+  }
+
+  .ember-power-calendar-day--selected:not([disabled]):hover {
+    background-color: #71B03E;
+    color: #FFFFFF;
+  }
+
+  .ember-power-calendar-day--selected {
+    background-color: #71B03E;
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFFFFF;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:active  {
+      background-color: darken(#71B03E, 10%);
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(360deg)
+  }
+}

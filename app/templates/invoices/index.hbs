@@ -1,0 +1,55 @@
+<div class="invoices-index-page">
+  <h2>Invoices</h2>
+
+  {{#link-to "invoices.new" class="btn-primary"}}New Invoice{{/link-to}}
+
+  <div class="calendar-wrap">
+    {{#power-calendar
+      class="demo-calendar-smalll asdasd demo-calendar-mediumm margin-top-200"
+      center=center
+      selected=selected
+      onCenterChange=(action (mut center) value="moment")
+      onSelect=(action "updateDay" value="moment")
+    as |calendar|}}
+      <div class={{if findInvoicesTask.isRunning "btn-loading-spinner"}}>
+        {{calendar.nav}}
+        {{calendar.days}}
+      </div>
+    {{/power-calendar}}
+  </div>
+
+  <div class="dfc fg-1">
+    <h3>
+      Selected date:
+      {{#if selected}}
+        {{moment-format selected "YYYY-MM-DD"}}
+        {{fa-icon "window-close" click=(action "updateDay" selected)}}
+      {{else}}
+        All dates
+      {{/if}}
+    </h3>
+
+    <div class="dfc fg-1 {{if findInvoicesTask.isRunning "loading-spinner"}}">
+      {{#each invoices as |invoice|}}
+        {{invoice-list-row
+          invoice=invoice
+          destroyInvoice=(action "destroyInvoice")}}
+      {{else}}
+        {{#if findInvoicesTask.isIdle}}
+          <h2>
+            Nothing found
+            {{#if selected}}
+              for: {{moment-format selected "YYYY-MM-DD"}}
+            {{/if}}
+          </h2>
+        {{/if}}
+      {{/each}}
+    </div>
+
+    {{#if invoices}}
+      <p>
+        <strong>Total: {{totalAmount}}</strong>
+      </p>
+    {{/if}}
+  </div>
+</div>
